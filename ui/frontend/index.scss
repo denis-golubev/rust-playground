@@ -49,6 +49,14 @@ body {
         &-vertical {
             flex-direction: row;
         }
+
+        &-vertical > * {
+            margin-right: 0.5em;
+        }
+
+        &-vertical > *:last-child {
+            margin-right: 0;
+        }
     }
 
     &-editor {
@@ -245,6 +253,14 @@ body {
 
     &-tabs {
         display: flex;
+
+        &-column {
+            flex-direction: column;
+        }
+
+        &-row {
+            flex-direction: row;
+        }
     }
 
     &-tab {

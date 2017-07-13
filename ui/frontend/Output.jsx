@@ -188,7 +188,7 @@ class Output extends PureComponent {
 
   render() {
     const {
-      meta: { focus }, execute, format, clippy, assembly, llvmIr, mir, gist,
+      meta: { focus }, execute, format, clippy, assembly, llvmIr, mir, gist, splitOrientation
     } = this.props;
 
     const somethingToShow = [execute, format, clippy, assembly, llvmIr, mir, gist].some(hasProperties);
@@ -217,9 +217,20 @@ class Output extends PureComponent {
       );
     }
 
+    let orientation;
+    if (!focus) {
+      if (splitOrientation === 'vertical') {
+        orientation = 'column';
+      } else {
+        orientation = 'row';
+      }
+    } else {
+      orientation = 'row';
+    }
+
     return (
       <div className="output">
-        <div className="output-tabs">
+        <div className={`output-tabs output-tabs-${orientation}`}>
           <Tab kind="execute" focus={focus}
                label="Execution"
                onClick={this.focusExecute}
@@ -291,9 +302,11 @@ Output.propTypes = {
   }),
 
   changeFocus: PropTypes.func.isRequired,
+
+  splitOrientation: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ output }) => output;
+const mapStateToProps = ({ output, configuration: { orientation } }) => ({ ...output, splitOrientation: orientation });
 
 const mapDispatchToProps = dispatch => ({
   changeFocus: x => dispatch(changeFocus(x)),

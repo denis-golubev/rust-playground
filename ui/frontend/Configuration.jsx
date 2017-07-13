@@ -62,8 +62,6 @@ class Configuration extends PureComponent {
   }
 
   render() {
-    console.log("render:", this.props);
-
     const { editor, keybinding, theme, orientation, toggleConfiguration } = this.props;
 
     const advancedEditor = editor === 'advanced';

@@ -32,7 +32,7 @@ class Playground extends React.Component {
           <div className="playground-header">
             <Header />
           </div>
-          <div className={`${orientation}`}>
+          <div className={`playground-split ${orientation}`}>
             <div className="playground-editor">
               <Editor />
             </div>
@@ -63,7 +63,7 @@ class Playground extends React.Component {
 Playground.propTypes = {
   focus: PropTypes.string,
   showConfig: PropTypes.bool.isRequired,
-  orientation: PropTypes.string.isRequired,
+  splitOrientation: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = ({ configuration: { shown: showConfig, orientation: splitOrientation }, output: { meta: { focus } } }) => (

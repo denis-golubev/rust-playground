@@ -46,7 +46,6 @@ export function changeTheme(theme) {
 }
 
 export function changeOrientation(orientation) {
-  console.log("chaing orientation to ", orientation);
   return { type: CHANGE_ORIENTATION, orientation }
 }
 
