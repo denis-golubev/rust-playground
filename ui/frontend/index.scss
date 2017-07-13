@@ -38,6 +38,19 @@ body {
 
     padding-bottom: 1em;
 
+    &-split {
+        display: flex;
+        height: 100vh;
+
+        &-horizontal {
+            flex-direction: column;
+        }
+
+        &-vertical {
+            flex-direction: row;
+        }
+    }
+
     &-editor {
         flex: 1 1 auto;
         position: relative;

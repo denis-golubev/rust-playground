@@ -19,10 +19,11 @@ function ConfigurationModal() {
 
 class Playground extends React.Component {
   render() {
-    const { showConfig, focus } = this.props;
+    const { showConfig, focus, splitOrientation } = this.props;
 
     const config = showConfig ? <ConfigurationModal /> : null;
     const outputFocused = focus ? 'playground-output-focused' : '';
+    const orientation = 'playground-split-' + splitOrientation;
 
     return (
       <div>
@@ -31,11 +32,13 @@ class Playground extends React.Component {
           <div className="playground-header">
             <Header />
           </div>
-          <div className="playground-editor">
-            <Editor />
-          </div>
-          <div className={`playground-output ${outputFocused}`}>
-            <Output />
+          <div className={`${orientation}`}>
+            <div className="playground-editor">
+              <Editor />
+            </div>
+            <div className={`playground-output ${outputFocused}`}>
+              <Output />
+            </div>
           </div>
         </div>
       </div>
@@ -60,10 +63,11 @@ class Playground extends React.Component {
 Playground.propTypes = {
   focus: PropTypes.string,
   showConfig: PropTypes.bool.isRequired,
+  orientation: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ configuration: { shown: showConfig }, output: { meta: { focus } } }) => (
-  { showConfig, focus }
+const mapStateToProps = ({ configuration: { shown: showConfig, orientation: splitOrientation }, output: { meta: { focus } } }) => (
+  { showConfig, focus, splitOrientation }
 );
 
 const ConnectedPlayground = connect(
